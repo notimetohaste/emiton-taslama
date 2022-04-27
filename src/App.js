@@ -1,11 +1,20 @@
-import './App.css';
+import Header from './components/Header'
+import Contacts from './components/Contacts'
+import React, { Component } from 'react'
 
-function App() {
-  return (
-   <div>
-     Hello
-   </div>
-  );
+import './App.css'
+
+class App extends Component {
+ 
+  render() {
+    
+    return (
+      <div>
+      <Header />
+      <Contacts />
+        
+      </div>
+    )
 }
-
-export default App;
+}
+export default App
