@@ -13,13 +13,13 @@ constructor(){
       email: "amail@asdfadsf"
     },
     {
-      id: 1,
+      id: 2,
       name: "Ashyr",
       phone: "2455555",
       email: "amail@asdfadsf"
     },
     {
-      id: 1,
+      id: 3,
       name: "Sazak",
       phone: "2455555",
       email: "amail@asdfadsf"
@@ -28,12 +28,11 @@ constructor(){
 }
 }
 render(){
-  const {contact} = this.state;
- 
+  
   return(
     <div>
-     {contact.map(c => (
-       <Contact contact={contact} />
+     {this.state.contact.map(c => (
+       <Contact key={c.id} contact={c} />
      ))}
     </div>
   )

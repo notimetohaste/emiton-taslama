@@ -1,19 +1,18 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 
 
-class Contact extends Component {
-    render(){
-        const {contact} = this.state
+function Contact(props) {
+        const {name, phone, email} = props.contact
         return (
             <div>
        <ul>
-           <li>{contact.name}</li>
-           <li>{contact.phone}</li>
-           <li>{contact.email}</li>
+           <li>{name}</li>
+           <li>{phone}</li>
+           <li>{email}</li>
        </ul>
     </div>
   )
 }
-}
+
 export default Contact
