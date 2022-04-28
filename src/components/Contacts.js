@@ -1,42 +1,24 @@
-import React, {Component} from 'react'
-import Contact from './Contact'
+import React, { Component } from "react";
+import Contact from "./Contact";
+import { Consumer } from "./context";
 
-class Contacts extends  Component {
-constructor(){
-  super()
-  this.state = {
-    contact: [
-      {
-      id: 1,
-      name: "Nurgeldi",
-      phone: "2455555",
-      email: "amail@asdfadsf"
-    },
-    {
-      id: 2,
-      name: "Ashyr",
-      phone: "2455555",
-      email: "amail@asdfadsf"
-    },
-    {
-      id: 3,
-      name: "Sazak",
-      phone: "2455555",
-      email: "amail@asdfadsf"
-    }
-  ]
-}
-}
-render(){
-  
-  return(
-    <div>
-     {this.state.contact.map(c => (
-       <Contact key={c.id} contact={c} />
-     ))}
-    </div>
-  )
-}
+class Contacts extends Component {
+  render() {
+    return (
+      <Consumer>
+        {(value) => {
+          const { contacts } = value;
+          return (
+            <React.Fragment>
+              {contacts.map((c) => (
+                <Contact key={c.id} contact={c} />
+              ))}
+            </React.Fragment>
+          );
+        }}
+      </Consumer>
+    );
+  }
 }
 
-export default Contacts
+export default Contacts;
