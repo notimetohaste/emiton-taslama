@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { Consumer } from './context';
 
 class Contact extends Component {
   constructor() {
@@ -8,41 +9,51 @@ class Contact extends Component {
     };
   }
 
-  showClick = (e) => {
+  showClick = () => {
     this.setState({
       showInfo: !this.state.showInfo,
     });
   };
-  deleteContact = () => {};
+  deleteContact = (id, dispatch) => {
+    dispatch({ type: 'DELETE_CONTACT', payload: id });
+    console.log(id);
+  };
   render() {
     //Destructoring
-    const { name, phone, email } = this.props.contact;
+    const { id, name, phone, email } = this.props.contact; // here, props is used in a same way as functional component, but props not shown anywhere as property
     const { showInfo } = this.state;
     return (
-      <div>
-        <h1>
-          {name}{" "}
-          <button style={{ cursor: "pointer" }} onClick={this.showClick}>
-            click
-          </button>
-          <button
-            style={{
-              cursor: "pointer",
-              float: "right",
-              backgroundColor: "red",
-            }}
-            onClick={this.deleteContact}
-          >
-            delete
-          </button>
-        </h1>
-        {showInfo ? (
-          <ul>
-            <li>Phone number: {phone}</li>
-            <li>Email address: {email}</li>
-          </ul>
-        ) : null}
-      </div>
+      <Consumer>
+        {(value) => {
+          const { dispatch } = value;
+          return (
+            <div>
+              <h1>
+                {name} {'   '}
+                <button style={{ cursor: 'pointer' }} onClick={this.showClick}>
+                  click
+                </button>
+                <button
+                  style={{
+                    cursor: 'pointer',
+                    float: 'right',
+                    backgroundColor: 'red',
+                  }}
+                  onClick={this.deleteContact.bind(this, id, dispatch)}
+                >
+                  delete
+                </button>
+              </h1>
+              {showInfo ? (
+                <ul>
+                  <li>Phone number: {phone}</li>
+                  <li>Email address: {email}</li>
+                </ul>
+              ) : null}
+            </div>
+          );
+        }}
+      </Consumer>
     );
   }
 }
