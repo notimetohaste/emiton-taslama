@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-import { Consumer } from './context';
+import { Consumer } from '../../context';
 
 class Contact extends Component {
   constructor() {
     super();
+    //! toggle = showing infos or not
     this.state = {
       showInfo: false,
     };
   }
-
+  //! function for toggles
   showClick = () => {
     this.setState({
       showInfo: !this.state.showInfo,
     });
   };
+  // ! this takes 'id, dispatch' as params. Then 'id' is called with 'this, id'. 'Dispatch' is called also with id. dispatch takes object params.
+  // ! type and payload. type is 'DELETE_CONTACT' and payload is 'id'.
   deleteContact = (id, dispatch) => {
     dispatch({ type: 'DELETE_CONTACT', payload: id });
-    console.log(id);
   };
   render() {
     //Destructoring
@@ -34,11 +36,7 @@ class Contact extends Component {
                   click
                 </button>
                 <button
-                  style={{
-                    cursor: 'pointer',
-                    float: 'right',
-                    backgroundColor: 'red',
-                  }}
+                  style={{ float: 'right', backgroundColor: 'red' }}
                   onClick={this.deleteContact.bind(this, id, dispatch)}
                 >
                   delete
