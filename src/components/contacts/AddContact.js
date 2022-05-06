@@ -1,31 +1,20 @@
 import React, { Component } from 'react';
 
 export default class AddContact extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    name: '',
+    phone: '',
+    email: '',
+  };
 
-    this.nameInput = React.createRef();
-    this.phoneInput = React.createRef();
-    this.emailInput = React.createRef();
-  }
+  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = (e) => {
     e.preventDefault();
-    const contact = {
-      name: this.nameInput.current.value,
-      phone: this.phoneInput.current.value,
-      email: this.emailInput.current.value,
-    };
-    console.log(contact);
-  };
-  static defaultProps = {
-    name: 'Fred Smith',
-    email: 'adfasd@gmail.com',
-    phone: '22222',
   };
 
   render() {
-    const { name, phone, email } = this.props;
+    const { name, phone, email } = this.state;
     return (
       <div>
         <div>Add Contact</div>
@@ -36,9 +25,9 @@ export default class AddContact extends Component {
               <input
                 type="text"
                 name="name"
+                value={name}
                 placeholder="Enter the Name"
-                ref={this.nameInput}
-                defaultValue={name}
+                onChange={this.onChange}
               />
             </div>
             <div>
@@ -46,9 +35,9 @@ export default class AddContact extends Component {
               <input
                 type="text"
                 name="phone"
+                value={phone}
                 placeholder="Enter the Phone"
-                ref={this.phoneInput}
-                defaultValue={phone}
+                onChange={this.onChange}
               />
             </div>
             <div>
@@ -56,9 +45,9 @@ export default class AddContact extends Component {
               <input
                 type="email"
                 name="email"
+                value={email}
                 placeholder="Enter the Email"
-                ref={this.emailInput}
-                defaultValue={email}
+                onChange={this.onChange}
               />
             </div>
             <input type="sumbit" value="Add Contact" />

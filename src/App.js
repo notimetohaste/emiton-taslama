@@ -12,8 +12,8 @@ class App extends Component {
       <Provider>
         <div>
           <Header />
-          <AddContact />
           <Contacts />
+          <AddContact />
         </div>
       </Provider>
     );

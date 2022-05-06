@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 
 export default class AddContact extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+
+    this.nameInput = React.createRef();
+    this.phoneInput = React.createRef();
+    this.emailInput = React.createRef();
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const contact = {
+      name: this.nameInput.current.value,
+      phone: this.phoneInput.current.value,
+      email: this.emailInput.current.value,
+    };
+    console.log(contact);
+  };
+  static defaultProps = {
     name: '',
     phone: '',
     email: '',
   };
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
-
-  onSubmit = (e) => {
-    e.preventDefault();
-  };
-
   render() {
-    const { name, phone, email } = this.state;
+    const { name, phone, email } = this.props;
+
     return (
       <div>
         <div>Add Contact</div>
@@ -25,9 +37,9 @@ export default class AddContact extends Component {
               <input
                 type="text"
                 name="name"
-                value={name}
                 placeholder="Enter the Name"
-                onChange={this.onChange}
+                ref={this.nameInput}
+                defaultValue={name}
               />
             </div>
             <div>
@@ -35,9 +47,9 @@ export default class AddContact extends Component {
               <input
                 type="text"
                 name="phone"
-                value={phone}
                 placeholder="Enter the Phone"
-                onChange={this.onChange}
+                ref={this.phoneInput}
+                defaultValue={phone}
               />
             </div>
             <div>
@@ -45,12 +57,12 @@ export default class AddContact extends Component {
               <input
                 type="email"
                 name="email"
-                value={email}
                 placeholder="Enter the Email"
-                onChange={this.onChange}
+                ref={this.emailInput}
+                defaultValue={email}
               />
             </div>
-            <input type="sumbit" value="Add Contact" />
+            <input type="submit" value="Add contact" />
           </form>
         </div>
       </div>
