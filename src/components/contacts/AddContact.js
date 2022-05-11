@@ -61,6 +61,7 @@ export default class AddContact extends Component {
                   <TextInputGroup
                     label="Email"
                     name="email"
+                    type="email"
                     value={email}
                     placeholder="Enter email"
                     onChange={this.onChange}
