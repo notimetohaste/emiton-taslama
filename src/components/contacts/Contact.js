@@ -37,7 +37,7 @@ class Contact extends Component {
                 </button>
                 <button
                   style={{ float: 'right', backgroundColor: 'red' }}
-                  onClick={this.deleteContact.bind(this, id, dispatch)}
+                  onClick={() => this.deleteContact(id, dispatch)}
                 >
                   delete
                 </button>
