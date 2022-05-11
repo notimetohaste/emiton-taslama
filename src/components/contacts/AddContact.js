@@ -36,7 +36,7 @@ export default class AddContact extends Component {
             <div>
               <div>Add Contact</div>
               <div>
-                <form onSubmit={() => this.onSubmit(dispatch)}>
+                <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                   <div>
                     <label>Name</label>
                     <input
