@@ -5,7 +5,6 @@ import AddContact from './components/contacts/AddContact';
 import About from './components/pages/About';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from './context';
-
 import './App.css';
 
 class App extends Component {
